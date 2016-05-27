@@ -83,7 +83,7 @@ namespace Extensions.Test
       /// model receives the calls specified in order - other calls were made to the mocked object.
       /// </summary>
       [TestMethod]
-      public void Received_NSubstituteReceivesStartsInOrder_ReceivesInOrderPartial()
+      public void Received_NSubstituteReceivesInOrderStarts_ReceivesInOrderPartial()
       {
          // arrange
          var model = Substitute.For<IExampleModel>();
@@ -92,7 +92,7 @@ namespace Extensions.Test
          CallMethods(model);
 
          // assert
-         NSubstituteExtension.Received.StartsInOrder(() =>
+         NSubstituteExtension.Received.InOrderStarts(() =>
          {
             model.Function1();
             model.Function2();
@@ -127,7 +127,7 @@ namespace Extensions.Test
       /// This test demonstrates that any sequence of calls are permitted on model so long as they start in the correct order.
       /// </summary>
       [TestMethod]
-      public void Received_NSubstituteExtensionStartsInOrder_ReceivesInOrder()
+      public void Received_NSubstituteExtensionInOrderStarts_ReceivesInOrder()
       {
          // arrange
          var model = Substitute.For<IExampleModel>();
@@ -137,7 +137,7 @@ namespace Extensions.Test
          CallMethods(model);
 
          // assert
-         NSubstituteExtension.Received.StartsInOrder(() =>
+         NSubstituteExtension.Received.InOrderStarts(() =>
          {
             model.Function1();
             model.Function2();
@@ -173,12 +173,12 @@ namespace Extensions.Test
       }
 
       /// <summary>
-      /// This test demonstrates that more calls were expected on model than received - StartsInOrder.
-      /// In this case, the test of StartsInOrder fails because more calls were specified than detected.
+      /// This test demonstrates that more calls were expected on model than received - InOrderStarts.
+      /// In this case, the test of InOrderStarts fails because more calls were specified than detected.
       /// </summary>
       [TestMethod]
       [ExpectedException(typeof(NSubstitute.Exceptions.CallSequenceNotFoundException))]
-      public void Received_NSubstituteExtensionStartsInOrderTooManyMethodCallsExpected_ThrowsException()
+      public void Received_NSubstituteExtensionInOrderStartsTooManyMethodCallsExpected_ThrowsException()
       {
          // arrange
          var model = Substitute.For<IExampleModel>();
@@ -187,7 +187,7 @@ namespace Extensions.Test
          CallMethods(model);
 
          // assert
-         NSubstituteExtension.Received.StartsInOrder(() =>
+         NSubstituteExtension.Received.InOrderStarts(() =>
          {
             model.Function1();
             model.Function2();

@@ -8,7 +8,7 @@ namespace NSubstituteExtension
 {
    public static class Received
    {
-      public static void StartsInOrder(Action calls)
+      public static void InOrderStarts(Action calls)
       {
          var queryResults = SubstitutionContext.Current.RunQuery(calls);
          var results = new Results(queryResults);
